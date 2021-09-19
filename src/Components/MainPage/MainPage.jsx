@@ -4,8 +4,9 @@ import { getData, getFilterData } from "../../Redux/action";
 import Cards from "../Cards/Cards";
 import Pagination from "./Pagination";
 import MaterialUIPickers from "../Calendar/Calendar";
-import { Button } from "@mui/material";
-import "../Cards/Cards.css";
+import { Button, Typography } from "@mui/material";
+import styles from "../Cards/Cards.module.css";
+import "./MainPage.css";
 const MainPage = () => {
   const [value, setValue] = React.useState(new Date());
   const [currentPage, setCurrentPage] = useState(1);
@@ -53,12 +54,26 @@ const MainPage = () => {
   console.log(value);
 
   return (
-    <div>
-      <MaterialUIPickers value={value} setValue={setValue} />
-      <Button onClick={filterData}>Search</Button>
-      <Button onClick={resetData}>Reset</Button>
+    <div className="container">
+      <Typography>VEHICLE CRASH DETAILS</Typography>
+      <hr />
+      <div className="calendlyContainer">
+        <MaterialUIPickers value={value} setValue={setValue} />
+        <br />
+        <Button onClick={filterData}>Search</Button>
+        <Button onClick={resetData}>Reset</Button>
+      </div>
+      <br />
+      <div className="paginateCont">
+        <Pagination
+          postPerPage={postPerPage}
+          totalPost={data.length}
+          paginate={paginate}
+        />
+      </div>
+      <br />
       <table>
-        <tr>
+        <tr className={styles.trss}>
           <th>Id</th>
           <th>Vehicle Type 1</th>
           <th>Vehicle Type 2</th>
@@ -70,11 +85,6 @@ const MainPage = () => {
           <Cards key={el.collision_id} data={el} />
         ))}
       </table>
-      <Pagination
-        postPerPage={postPerPage}
-        totalPost={data.length}
-        paginate={paginate}
-      />
     </div>
   );
 };

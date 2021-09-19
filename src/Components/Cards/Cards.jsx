@@ -1,6 +1,7 @@
+import { Button } from "@mui/material";
 import React from "react";
 import { useHistory } from "react-router";
-import "./Cards.css";
+import styles from "./Cards.module.css";
 const Cards = ({ data }) => {
   const history = useHistory();
   const handlePage = () => {
@@ -15,11 +16,6 @@ const Cards = ({ data }) => {
 
   return (
     <>
-      {/* <p></p>
-      <p>{data.vehicle_type_code1}</p>
-      <p>{data.vehicle_type_code2}</p>
-      <p>{finalDate}</p>
-  <p>{data.crash_time}</p>*/}
       <tr>
         <td>{data.collision_id}</td>
         <td>{data.vehicle_type_code1}</td>
@@ -28,7 +24,7 @@ const Cards = ({ data }) => {
         <td>{data.crash_time}</td>
         <td>
           {" "}
-          <button onClick={handlePage}>Click for info</button>
+          <Button onClick={handlePage}>Click for info</Button>
         </td>
       </tr>
     </>
